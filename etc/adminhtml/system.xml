@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="hmh" translate="label" sortOrder="900">
+            <label>HMH</label>
+        </tab>
+        <section id="hmh_spcountdown" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Special Price Countdown</label>
+            <tab>hmh</tab>
+            <resource>Hmh_SpCountDown::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="countdown_days" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show countdown timer X days before special price expires</label>
+                    <source_model>Hmh\SpCountDown\Model\Config\Source\CountdownDays</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
