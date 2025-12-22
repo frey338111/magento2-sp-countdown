@@ -1,4 +1,4 @@
-# Hmh SpCountDown
+# Special Price count down timer
 
 Frontend price-box mixin that shows a countdown message when a product has a `special_to_date`. Works with configurable products by resolving the selected child’s special price end date.
 
