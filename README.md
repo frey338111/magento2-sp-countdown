@@ -18,3 +18,13 @@ Frontend price-box mixin that shows a countdown message when a product has a `sp
 
 ## Usage
 Once enabled, the countdown appears automatically when a product (or selected child of a configurable) has a valid `special_to_date` within the configured window.
+
+## Screenshots
+### Admin Configuration
+![Admin Configuration](images/admin.png)
+
+### Simple Product Countdown
+![Simple Product Countdown](images/simple-product.png)
+
+### Configurable Product Countdown
+![Configurable Product Countdown](images/configurable-product.png)
