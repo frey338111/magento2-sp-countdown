@@ -19,6 +19,10 @@ Frontend price-box mixin that shows a countdown message when a product has a `sp
 ## Usage
 Once enabled, the countdown appears automatically when a product (or selected child of a configurable) has a valid `special_to_date` within the configured window.
 
+## Customization
+- Message template: edit `src/app/code/Hmh/SpCountDown/view/frontend/web/template/special-price-message.html` to change markup, classes, or inline styles.
+- Translations: update or add CSVs under `src/app/code/Hmh/SpCountDown/i18n/` (e.g. `en_US.csv`, `en_GB.csv`) for the JS strings.
+
 ## Screenshots
 ### Admin Configuration
 ![Admin Configuration](images/admin.png)

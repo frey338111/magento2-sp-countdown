@@ -1,4 +1,8 @@
-define(['jquery'], function ($) {
+define([
+    'jquery',
+    'mage/template',
+    'text!Hmh_SpCountDown/template/special-price-message.html'
+], function ($, mageTemplate, messageTemplate) {
     'use strict';
 
     return function () {
@@ -99,26 +103,40 @@ define(['jquery'], function ($) {
             _renderCountdown: function (endDate) {
                 this._clearCountdown();
 
-                const message = $('<div/>', {
-                    class: 'message notice special-price-message'
-                }).css('text-align', 'left').appendTo(this.element);
+                const message = $('<div/>').appendTo(this.element);
+                this._messageElement = message;
 
                 const updateCountdown = () => {
                     const remaining = endDate.getTime() - Date.now();
 
                     if (remaining <= 0) {
-                        message.text($.mage.__('Special price has ended.'));
+                        message.html(this._renderMessage($.mage.__('Special price has ended.')));
                         clearInterval(this._countdownInterval);
                         return;
                     }
 
-                    message.text(
-                        $.mage.__('Special price ends in %1').replace('%1', this._formatDuration(remaining))
+                    message.html(
+                        this._renderMessage(
+                            $.mage.__('Special price ends in %1').replace(
+                                '%1',
+                                this._formatDuration(remaining)
+                            )
+                        )
                     );
                 };
 
                 updateCountdown();
                 this._countdownInterval = setInterval(updateCountdown, 1000);
+            },
+
+            _renderMessage: function (messageText) {
+                if (!this._messageTemplate) {
+                    this._messageTemplate = mageTemplate(messageTemplate);
+                }
+
+                return this._messageTemplate({
+                    message: messageText
+                });
             },
 
             _formatDuration: function (milliseconds) {
@@ -165,7 +183,10 @@ define(['jquery'], function ($) {
                     this._countdownInterval = null;
                 }
 
-                this.element.find('.special-price-message').remove();
+                if (this._messageElement) {
+                    this._messageElement.remove();
+                    this._messageElement = null;
+                }
                 this._countdownInitialized = false;
             }
         });
