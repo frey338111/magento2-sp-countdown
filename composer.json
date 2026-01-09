@@ -10,7 +10,8 @@
     },
     "authors": [
         {
-            "name": "Fei Chen"
+            "name": "Fei Chen",
+            "email": "feic.hmh@gmail.com"
         }
     ],
     "autoload": {
