@@ -7,13 +7,15 @@ use Hmh\SpCountDown\Model\Config\ConfigProvider;
 use Magento\Catalog\Block\Product\View;
 use Magento\Catalog\Model\Product;
 use Magento\ConfigurableProduct\Model\Product\Type\Configurable as ConfigurableType;
+use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Serialize\Serializer\Json;
 
 class GetJsonConfigPlugin
 {
     public function __construct(
         private readonly ConfigProvider $configProvider,
-        private readonly Json $jsonSerializer
+        private readonly Json $jsonSerializer,
+        private readonly DirectoryList $directoryList
     ) {
     }
 
@@ -40,7 +42,6 @@ class GetJsonConfigPlugin
         if ($product->getTypeId() === ConfigurableType::TYPE_CODE) {
             $config = $this->appendConfigurableChildrenDates($product, $config);
         }
-
         return $this->jsonSerializer->serialize($config);
     }
 
